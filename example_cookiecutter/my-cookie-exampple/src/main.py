@@ -1,6 +1,6 @@
 import traceback
 
-from external_import_connector import ConnectorMyCookieExample
+from external_import_connector import ConnectorMyCookieExampple
 
 if __name__ == "__main__":
     """
@@ -13,7 +13,7 @@ if __name__ == "__main__":
     It signals to the operating system and any calling processes that the program did not complete successfully.
     """
     try:
-        connector = ConnectorMyCookieExample()
+        connector = ConnectorMyCookieExampple()
         connector.run()
     except Exception:
         traceback.print_exc()

@@ -1,7 +1,7 @@
 version: '3'
 services:
-  connector-my-cookie-example:
-    image: opencti/connector-my-cookie-example:6.5.2
+  connector-my-cookie-exampple:
+    image: opencti/connector-my-cookie-exampple:6.5.2
     environment:
       # Connector's generic execution parameters
       - OPENCTI_URL=http://localhost
@@ -22,9 +22,9 @@ services:
       # - CONNECTOR_SEND_TO_DIRECTORY_RETENTION=7 # Default 7, in days
 
       # Connector's custom execution parameters
-      - CONNECTOR_MY_COOKIE_EXAMPLE_API_BASE_URL=CHANGEME
-      - CONNECTOR_MY_COOKIE_EXAMPLE_API_KEY=CHANGEME
-      - CONNECTOR_MY_COOKIE_EXAMPLE_TLP_LEVEL=CHANGEME # available values are: clear, white, green, amber, amber+strict, red - Default: 'clear'
+      - CONNECTOR_MY_COOKIE_EXAMPPLE_API_BASE_URL=CHANGEME
+      - CONNECTOR_MY_COOKIE_EXAMPPLE_API_KEY=CHANGEME
+      - CONNECTOR_MY_COOKIE_EXAMPPLE_TLP_LEVEL=CHANGEME # available values are: clear, white, green, amber, amber+strict, red - Default: 'clear'
 
       # Add proxy parameters below if needed
       # - HTTP_PROXY=CHANGEME

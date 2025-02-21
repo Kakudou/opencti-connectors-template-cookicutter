@@ -1,4 +1,4 @@
-# OpenCTI External Ingestion Connector My Cookie ExAmple
+# OpenCTI External Ingestion Connector My CookIe ExAmpple
 
 <!--
 General description of the connector
@@ -11,7 +11,7 @@ General description of the connector
 
 Table of Contents
 
-- [OpenCTI External Ingestion Connector My Cookie ExAmple](#opencti-external-ingestion-connector-my-cookie-example)
+- [OpenCTI External Ingestion Connector My CookIe ExAmpple](#opencti-external-ingestion-connector-my-cookie-exampple)
   - [Introduction](#introduction)
   - [Installation](#installation)
     - [Requirements](#requirements)

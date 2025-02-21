@@ -5,7 +5,7 @@ opencti:
 connector:
   id: 'ChangeMe'
   type: 'EXTERNAL_IMPORT'
-  name: 'External Import Connector My Cookie ExAmple'
+  name: 'External Import Connector My CookIe ExAmpple'
   scope: 'ChangeMe'
   log_level: 'info'
   duration_period: 'PT5M' # Interval given for scheduler process in ISO-8601 format
@@ -20,7 +20,7 @@ connector:
   #send_to_directory_path: 'ChangeMe'
   #send_to_directory_retention: 7
 
-connector_my_cookie_example:
+connector_my_cookie_exampple:
   api_base_url: 'ChangeMe'
   api_key: 'ChangeMe'
   tlp_level: 'ChangeMe' # available values are: clear, white, green, amber, amber+strict, red - Default: 'clear'

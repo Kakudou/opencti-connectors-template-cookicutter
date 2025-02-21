@@ -8,7 +8,7 @@ from .config_loader import ConfigConnector
 from .converter_to_stix import ConverterToStix
 
 
-class ConnectorTemplate:
+class ConnectorMyCookieExampple:
     """
     Specifications of the external import connector
 
@@ -114,7 +114,7 @@ class ConnectorTemplate:
                 )
 
             # Friendly name will be displayed on OpenCTI platform
-            friendly_name = "Connector template feed"
+            friendly_name = "Connector My CookIe ExAmpple feed"
 
             # Initiate a new work
             work_id = self.helper.api.work.initiate_work(

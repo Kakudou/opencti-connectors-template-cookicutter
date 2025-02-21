@@ -5,7 +5,7 @@ from pycti import OpenCTIConnectorHelper
 from .config_loader import ConfigConnector
 
 
-class ConnectorTemplate:
+class Connector{{ cookiecutter.__connector_name_camelcase}}:
     """
     Specifications of the Internal Import File connector
 

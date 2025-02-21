@@ -44,18 +44,18 @@ class ConfigConnector:
 
         # Connector extra parameters
         self.api_base_url = get_config_variable(
-            "CONNECTOR_MY_COOKIE_EXAMPLE_API_BASE_URL",
-            ["connector_my_cookie_example", "api_base_url"],
+            "CONNECTOR_MY_COOKIE_EXAMPPLE_API_BASE_URL",
+            ["connector_my_cookie_exampple", "api_base_url"],
             self.load,
         )
 
         self.api_key = get_config_variable(
-            "CONNECTOR_MY_COOKIE_EXAMPLE_API_KEY",
-            ["connector_my_cookie_example", "api_key"],
+            "CONNECTOR_MY_COOKIE_EXAMPPLE_API_KEY",
+            ["connector_my_cookie_exampple", "api_key"],
             self.load,
         )
         self.tlp_level = get_config_variable(
-            "CONNECTOR_MY_COOKIE_EXAMPLE_TLP_LEVEL",
+            "CONNECTOR_MY_COOKIE_EXAMPPLE_TLP_LEVEL",
             ["connector_{ cookiecutter.__connector_name_snakecase }}", "tlp_level"],
             self.load,
             default="clear",
