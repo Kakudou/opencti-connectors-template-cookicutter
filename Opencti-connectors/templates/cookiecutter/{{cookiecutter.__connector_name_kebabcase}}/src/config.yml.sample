@@ -1,0 +1,39 @@
+opencti:
+  url: 'http://localhost:PORT'
+  token: 'ChangeMe'
+
+connector:
+  id: 'ChangeMe'
+  type: '{% if cookiecutter.connector_type == "external-import" %}EXTERNAL_IMPORT{% elif cookiecutter.connector_type == "internal-enrichment" %}INTERNAL_ENRICHMENT{% elif cookiecutter.connector_type == "internal-export-file" %}INTERNAL_EXPORT_FILE{% elif cookiecutter.connector_type == "internal-import-file" %}INTERNAL_IMPORT_FILE{% elif cookiecutter.connector_type == "stream" %}STREAM{% endif %}'
+  name: '{% if cookiecutter.connector_type == "external-import" %}External Import{% elif cookiecutter.connector_type == "internal-enrichment" %}Internal Enrichment{% elif cookiecutter.connector_type == "internal-export-file" %}Internal Export File{% elif cookiecutter.connector_type == "internal-import-file" %}Internal Import File{% elif cookiecutter.connector_type == "stream" %}Stream{% endif %} Connector {{ cookiecutter.connector_name }}'
+  scope: 'ChangeMe'
+  log_level: 'info'
+  {%- if cookiecutter.connector_type == "external-import" %}
+  duration_period: 'PT5M' # Interval given for scheduler process in ISO-8601 format
+  {%- elif cookiecutter.connector_type == "internal-enrichment" %}
+  auto: 'True'
+  {%- elif cookiecutter.connector_type == "stream" %}
+  live_stream_id: 'live'
+  live_stream_listen_delete: 'True'
+  live_stream_no_dependencies: 'True'
+  {%- endif %}
+
+  {%- if cookiecutter.connector_type == "external-import" %}
+
+  #============================================#
+  # Optional connector's definition parameters #
+  #============================================#
+  #queue_threshold: 500
+  #run_and_terminate: 'False'
+  #send_to_queue: 'True'
+  #send_to_directory: 'False'
+  #send_to_directory_path: 'ChangeMe'
+  #send_to_directory_retention: 7
+  {%- endif %}
+
+connector_{{ cookiecutter.__connector_name_snakecase }}:
+  api_base_url: 'ChangeMe'
+  api_key: 'ChangeMe'
+  {%- if cookiecutter.connector_type == 'external-import' or cookiecutter.connector_type == 'internal-enrichment' %}
+  tlp_level: 'ChangeMe' # available values are: clear, white, green, amber, amber+strict, red - Default: 'clear'
+  {%- endif %}

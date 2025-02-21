@@ -1,0 +1,53 @@
+version: '3'
+services:
+  connector-{{ cookiecutter.__connector_name_kebabcase }}:
+    image: opencti/connector-{{ cookiecutter.__connector_name_kebabcase }}:{{ cookiecutter._connector_version }}
+    environment:
+      # Connector's generic execution parameters
+      - OPENCTI_URL=http://localhost
+      - OPENCTI_TOKEN=CHANGEME
+      # Connector's definition parameters REQUIRED
+      - CONNECTOR_ID=CHANGEME
+      - CONNECTOR_NAME=CHANGEME
+      - CONNECTOR_SCOPE=CHANGEME
+      - CONNECTOR_LOG_LEVEL=error
+      {%- if cookiecutter.connector_type == 'external-import' %}
+      - CONNECTOR_DURATION_PERIOD=CHANGEME # ISO8601 format in String, start with 'P...' for Period
+      {%- elif cookiecutter.connector_type == 'internal-enrichment' %}
+      - CONNECTOR_AUTO=true
+      {%- elif cookiecutter.connector_type == 'stream' %}
+      - CONNECTOR_LIVE_STREAM_ID=live # ID of the live stream created in the OpenCTI UI
+      - CONNECTOR_LIVE_STREAM_LISTEN_DELETE=true
+      - CONNECTOR_LIVE_STREAM_NO_DEPENDENCIES=true
+      {%- endif %}
+
+      {%- if cookiecutter.connector_type == 'external-import' %}
+
+      # Connector's definition parameters OPTIONAL
+      # - CONNECTOR_QUEUE_THRESHOLD=500 # Default 500Mo, Float accepted
+      # - CONNECTOR_RUN_AND_TERMINATE=False # Default False, True run connector once
+      # - CONNECTOR_SEND_TO_QUEUE=True # Default True
+      # - CONNECTOR_SEND_TO_DIRECTORY=False # Default False
+      # - CONNECTOR_SEND_TO_DIRECTORY_PATH=CHANGEME # if CONNECTOR_SEND_TO_DIRECTORY is True, you must specify a path
+      # - CONNECTOR_SEND_TO_DIRECTORY_RETENTION=7 # Default 7, in days
+      {%- endif %}
+
+      # Connector's custom execution parameters
+      - CONNECTOR_{{ cookiecutter.__connector_name_snakecase|upper }}_API_BASE_URL=CHANGEME
+      - CONNECTOR_{{ cookiecutter.__connector_name_snakecase|upper }}_API_KEY=CHANGEME
+      {%- if cookiecutter.connector_type == 'external-import' or cookiecutter.connector_type == 'internal-enrichment' %}
+      - CONNECTOR_{{ cookiecutter.__connector_name_snakecase|upper }}_TLP_LEVEL=CHANGEME # available values are: clear, white, green, amber, amber+strict, red - Default: 'clear'
+      {%- endif %}
+
+      # Add proxy parameters below if needed
+      # - HTTP_PROXY=CHANGEME
+      # - HTTPS_PROXY=CHANGEME
+      # - NO_PROXY=CHANGEME
+    restart: always
+    # networks:
+    #   - docker_default
+
+# networks:
+#   default:
+#     external: true
+#     name: docker_default

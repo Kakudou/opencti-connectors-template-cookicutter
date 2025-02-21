@@ -1,0 +1,73 @@
+import os
+from pathlib import Path
+
+import yaml
+from pycti import get_config_variable
+
+
+class ConfigConnector:
+    def __init__(self):
+        """
+        Initialize the connector with necessary configurations
+        """
+
+        # Load configuration file
+        self.load = self._load_config()
+        self._initialize_configurations()
+
+    @staticmethod
+    def _load_config() -> dict:
+        """
+        Load the configuration from the YAML file
+        :return: Configuration dictionary
+        """
+        config_file_path = Path(__file__).parents[1].joinpath("config.yml")
+        config = (
+            yaml.load(open(config_file_path), Loader=yaml.FullLoader)
+            if os.path.isfile(config_file_path)
+            else {}
+        )
+
+        return config
+
+    def _initialize_configurations(self) -> None:
+        """
+        Connector configuration variables
+        :return: None
+        """
+        # OpenCTI configurations
+        {%- if cookiecutter.connector_type == "external-import" %}
+        self.duration_period = get_config_variable(
+            "CONNECTOR_DURATION_PERIOD",
+            ["connector", "duration_period"],
+            self.load,
+        )
+        {%- endif %}
+
+        # Connector extra parameters
+        self.api_base_url = get_config_variable(
+            "CONNECTOR_{{ cookiecutter.__connector_name_snakecase|upper }}_API_BASE_URL",
+            ["connector_{{ cookiecutter.__connector_name_snakecase }}", "api_base_url"],
+            self.load,
+        )
+
+        self.api_key = get_config_variable(
+            "CONNECTOR_{{ cookiecutter.__connector_name_snakecase|upper }}_API_KEY",
+            ["connector_{{ cookiecutter.__connector_name_snakecase }}", "api_key"],
+            self.load,
+        )
+
+        {%- if cookiecutter.connector_type == "external-import" %}
+        self.tlp_level = get_config_variable(
+            "CONNECTOR_{{ cookiecutter.__connector_name_snakecase|upper }}_TLP_LEVEL",
+            ["connector_{ cookiecutter.__connector_name_snakecase }}", "tlp_level"],
+            self.load,
+            default="clear",
+        )
+        {% elif cookiecutter.connector_type == "internal-enrichment" %}
+        self.max_tlp = get_config_variable(
+            "CONNECTOR_{{ cookiecutter.__connector_name_snakecase|upper }}_MAX_TLP",
+            ["connector_{{ cookiecutter.__connector_name_snakecase }}", "max_tlp"],
+            self.load,
+        )
+        {%- endif %}

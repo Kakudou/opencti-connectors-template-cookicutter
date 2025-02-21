@@ -1,0 +1,10 @@
+{
+  "_connector_version": "6.5.2",
+  "connector_name": "template",
+  "__connector_name_snakecase": "{{ cookiecutter.connector_name|replace(' ', '_')|lower }}",
+  "__connector_name_kebabcase": "{{ cookiecutter.connector_name|replace(' ', '-')|lower }}",
+  "__connector_name_camelcase": "{{ cookiecutter.connector_name|title|replace(' ', '') }}",
+  "connector_type":  ["external-import", "internal-enrichment", "internal-export-file", "internal-import-file", "stream"],
+  "__connector_type_snakecase": "{{ cookiecutter.connector_type|replace('-', '_')|lower }}",
+  "__connector_type_humancase": "{{ cookiecutter.connector_type|replace('-', ' ')|title }}"
+}
