@@ -145,6 +145,12 @@ services:
 - **Consistency**: Ensures uniform structure and formatting across projects.
 - **Cross-Platform**: Works anywhere Python is installed, unlike shell scripts that are limited to Linux.
 
+## Troubleshoots
+
+If you are under windows, you will got some errors about filename too long when using the template from git or even cloning it.  
+To bypass this, you just have to configure your git config this way:  
+```git config --global core.longpaths true```
+
 ## Conclusion
 
 Using `cookiecutter` simplifies project creation by automating template generation. This example illustrates its usefulness in setting up OpenCTI connectors, but its applications extend to any project requiring structured templating.
